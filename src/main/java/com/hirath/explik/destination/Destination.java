@@ -1,15 +1,15 @@
-package com.hirath.explik.consumption;
+package com.hirath.explik.destination;
 
 import com.hirath.explik.Prioritized;
 import com.hirath.explik.Publishable;
 
-public class Sink<B,A> implements Condition<B,A>, Consumer<B,A>, Prioritized, Publishable {
+public class Destination<B,A> implements Condition<B,A>, Consumer<B,A>, Prioritized, Publishable {
     private Condition<B,A> condition;
     private Consumer<B,A> consumer;
     private boolean publishable;
     private int priority;
 
-    public Sink(Condition<B, A> condition, Consumer<B, A> consumer, boolean publishable, int priority) {
+    public Destination(Condition<B, A> condition, Consumer<B, A> consumer, boolean publishable, int priority) {
         this.condition = condition;
         this.consumer = consumer;
         this.publishable = publishable;

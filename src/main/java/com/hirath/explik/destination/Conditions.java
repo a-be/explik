@@ -1,4 +1,4 @@
-package com.hirath.explik.consumption;
+package com.hirath.explik.destination;
 
 import java.util.function.Predicate;
 

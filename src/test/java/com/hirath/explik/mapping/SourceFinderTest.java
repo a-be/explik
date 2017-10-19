@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.hirath.explik.production.SourceFinder;
+import com.hirath.explik.source.SourceFinder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SourceFinderTest {

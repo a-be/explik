@@ -1,10 +1,10 @@
-package com.hirath.explik.consumption;
+package com.hirath.explik.source;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ConditionsTests {
+public class ConditionsTest {
     private Conditions<Object,Object> condition;
 
     @Before
@@ -17,7 +17,7 @@ public class ConditionsTests {
         Condition<String,Object> conditionOut = condition.objectType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match("",null,null,null)).isTrue();
+        Assertions.assertThat(conditionOut.match("",null,null)).isTrue();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class ConditionsTests {
         Condition<String,Object> conditionOut = condition.objectType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isFalse();
     }
 
     @Test
@@ -33,55 +33,55 @@ public class ConditionsTests {
         Condition<String,Object> conditionOut = condition.objectType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(true,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(true,null,null)).isFalse();
     }
 
     @Test
     public void argumentTypeWithStringObjectShouldReturnTrue(){
-        Condition<Object,String> conditionOut = condition.argumentType(String.class);
+        Condition<Object,String> conditionOut = condition.returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,"",null,null)).isTrue();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isTrue();
     }
 
     @Test
-    public void argumentTypeWithNullShouldReturnFalse(){
-        Condition<Object,String> conditionOut = condition.argumentType(String.class);
+    public void returnTypeWithNullShouldReturnTrue(){
+        Condition<Object,String> conditionOut = condition.returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isTrue();
     }
 
     @Test
-    public void argumentTypeWithBooleanShouldReturnFalse(){
-        Condition<Object,String> conditionOut = condition.argumentType(String.class);
+    public void returnTypeWithBooleanShouldReturnTrue(){
+        Condition<Object,String> conditionOut = condition.returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,true,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isTrue();
     }
 
     @Test
-    public void objectTypeAndArgumentTypeWithNullShouldReturnFalse(){
-        Condition<String,String> conditionOut = condition.objectType(String.class).and().argumentType(String.class);
+    public void objectTypeAndReturnTypeWithNullShouldReturnFalse(){
+        Condition<String,String> conditionOut = condition.objectType(String.class).and().returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isFalse();
     }
 
     @Test
-    public void objectTypeAndArgumentTypeWith2StringShouldReturnTrue(){
-        Condition<String,String> conditionOut = condition.objectType(String.class).and().argumentType(String.class);
+    public void objectTypeAndReturnTypeWith2StringShouldReturnTrue(){
+        Condition<String,String> conditionOut = condition.objectType(String.class).and().returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match("","",null,null)).isTrue();
+        Assertions.assertThat(conditionOut.match("",null,null)).isTrue();
     }
 
     @Test
-    public void objectTypeAndArgumentTypeWith1StringShouldReturnFalse(){
-        Condition<String,String> conditionOut = condition.objectType(String.class).and().argumentType(String.class);
+    public void objectTypeAndReturnTypeWith1StringShouldReturnFalse(){
+        Condition<String,String> conditionOut = condition.objectType(String.class).and().returnType(String.class);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,"",null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isFalse();
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.descriptionMatches(".*");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isFalse();
     }
 
     @Test
@@ -97,7 +97,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.descriptionMatches(".*");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,"test")).isTrue();
+        Assertions.assertThat(conditionOut.match(null,null,"test")).isTrue();
     }
 
     @Test
@@ -105,7 +105,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.descriptionMatches("a");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,"test")).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,"test")).isFalse();
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.tagMatches(".*");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isFalse();
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.tagMatches(".*");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,"test",null)).isTrue();
+        Assertions.assertThat(conditionOut.match(null,"test",null)).isTrue();
     }
 
     @Test
@@ -129,7 +129,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.tagMatches("a");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,"test",null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,"test",null)).isFalse();
     }
 
     @Test
@@ -137,15 +137,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.objectSatisfies((object) -> true);
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isTrue();
-    }
-
-    @Test
-    public void argumentSatisfiesShouldReturnPredicateResult(){
-        Condition<Object,Object> conditionOut = condition.argumentSatisfies((object) -> true);
-
-        Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,null,null)).isTrue();
+        Assertions.assertThat(conditionOut.match(null,null,null)).isTrue();
     }
 
     @Test
@@ -153,7 +145,7 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.tagMatches("^.*tag.*$").and().descriptionMatches("^.*description.*$");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,"my tag",null)).isFalse();
+        Assertions.assertThat(conditionOut.match(null,"my tag",null)).isFalse();
     }
 
     @Test
@@ -161,6 +153,6 @@ public class ConditionsTests {
         Condition<Object,Object> conditionOut = condition.tagMatches("^.*tag.*$").and().descriptionMatches("^.*description.*$");
 
         Assertions.assertThat(conditionOut).isNotNull();
-        Assertions.assertThat(conditionOut.match(null,null,"my tag","my description")).isTrue();
+        Assertions.assertThat(conditionOut.match(null,"my tag","my description")).isTrue();
     }
 }

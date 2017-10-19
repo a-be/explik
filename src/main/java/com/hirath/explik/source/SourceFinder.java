@@ -1,12 +1,9 @@
-package com.hirath.explik.production;
+package com.hirath.explik.source;
 
-import com.hirath.explik.consumption.Sink;
 import com.hirath.explik.mapping.NoSourceFoundException;
-import com.hirath.explik.production.Source;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 public class SourceFinder<B> {
     private List<Source<?,?>> sources;

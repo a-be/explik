@@ -1,4 +1,4 @@
-package com.hirath.explik.consumption;
+package com.hirath.explik.destination;
 
 import static org.mockito.Matchers.any;
 
@@ -13,8 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.hirath.explik.TestDataGenerator;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SinkTests {
-    private Sink<Object,Object> sink;
+public class DestinationTests {
+    private Destination<Object,Object> destination;
     @Mock
     private Condition<Object,Object> condition;
     @Mock
@@ -31,7 +31,7 @@ public class SinkTests {
         tag = TestDataGenerator.randomString();
         description = TestDataGenerator.randomString();
         Mockito.when(condition.match(any(), any(), any(), any())).thenReturn(true);
-        sink = SinkBuilder.when(condition).disablePublish().then(consumer);
+        destination = DestinationBuilder.when(condition).disablePublish().then(consumer);
     }
 
     @Test
@@ -75,14 +75,14 @@ public class SinkTests {
     }
 
     private void matchShouldReturnConditionResult(Object bean, Object argument, String tag, String description) {
-        boolean result = sink.match(bean, argument, tag, description);
+        boolean result = destination.match(bean, argument, tag, description);
 
         Assertions.assertThat(result).isTrue();
         Mockito.verify(condition).match(bean, argument, tag, description);
     }
 
     private void takeShouldCallConsumer(Object bean, Object argument, String tag, String description) {
-        sink.take(bean, argument, tag, description);
+        destination.take(bean, argument, tag, description);
 
         Mockito.verify(consumer).take(bean, argument, tag, description);
     }
